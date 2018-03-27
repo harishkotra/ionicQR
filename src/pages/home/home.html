@@ -1,14 +1,29 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      IonicQR
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+	<ion-item>
+		<ion-input type="text" placeholder="Enter data for the QR Code" [(ngModel)]="qrData"></ion-input>
+	</ion-item>
+
+	<button ion-button full icon-left (click)="createCode()"><ion-icon name="barcode"></ion-icon>Create QR</button>
+	<button ion-button full icon-left (click)="scanCode()"><ion-icon name="qr-scanner"></ion-icon>Scan QR</button>
+
+	<ion-card *ngIf="createdCode">
+		<ngx-qrcode [qrc-value]="createdCode"></ngx-qrcode>
+		<ion-card-content>
+			<p>Value: {{createdCode}}</p>
+		</ion-card-content>
+	</ion-card>
+
+	<ion-card *ngIf="scannedCode">
+		<ion-card-content>
+			<p>Result from Scan: {{scannedCode}}</p>
+		</ion-card-content>
+	</ion-card>
 </ion-content>
